@@ -1,4 +1,4 @@
-# 🍳LMS Project
+# 🍳LearnHub A Learning Management System
 
 ## Description
 
