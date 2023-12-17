@@ -11,7 +11,7 @@ const HomePage = () => {
   return (
     <HomeLayout>
       <>
-        <div className=" text-white py-14  sm:py-12 px-4 sm:px-10 flex flex-col lg:flex-row items-center justify-center gap-10 mx-auto sm:mx-16 min-h-[100vh] text-center md:text-left overflow-x-hidden">
+        <div className=" text-white py-14 sm:py-12 px-4 sm:px-10 flex flex-col lg:flex-row items-center justify-center gap-10 mx-auto sm:mx-16 min-h-[100vh] text-center md:text-left overflow-x-hidden">
           <div className=" w-full lg:w-1/2 space-y-6">
             <h1 className="lg:text-5xl md:text-4xl text-3xl font-semibold relative">
               Welcome To{" "}
@@ -27,7 +27,6 @@ const HomePage = () => {
               <div className=" font-bold my-2">
                 <TypeAnimation
                   sequence={[
-                    // Same substring at the start will only be typed once, initially
                     " Skilled",
                     1000,
                     " Qualified",

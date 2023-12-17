@@ -6,42 +6,41 @@ const initialState = {
     coursesData: []
 }
 
-// ....get all courses....
+// ...get all courses...
 export const getAllCourses = createAsyncThunk("/courses/get", async () => {
-    const loadingMessage = toast.loading("fetching courses...");
     try {
         const res = await axiosInstance.get("/courses");
-        toast.success(res?.data?.message, { id: loadingMessage });
-        return res?.data
+        toast.success(res?.data?.message, { id: 'request-success' });
+        return res?.data;
     } catch (error) {
-        toast.error(error?.response?.data?.message, { id: loadingMessage });
+        toast.error(error?.response?.data?.message, { id: 'request-error' });
         throw error;
     }
-})
+});
 
-// ....create course....
+// ...create course...
 export const createNewCourse = createAsyncThunk("/courses/create", async (data) => {
     const loadingMessage = toast.loading("Creating course...");
     try {
         const res = await axiosInstance.post("/courses", data);
         toast.success(res?.data?.message, { id: loadingMessage });
-        return res?.data
+        return res?.data;
     } catch (error) {
         toast.error(error?.response?.data?.message, { id: loadingMessage });
         throw error;
     }
-})
+});
 
-// ....delete course......
+// ...delete course...
 export const deleteCourse = createAsyncThunk("/course/delete", async (id) => {
-    const loadingId = toast.loading("deleting course ...")
+    const loadingId = toast.loading("Deleting course...");
     try {
         const response = await axiosInstance.delete(`/courses/${id}`);
-        toast.success("Courses deleted successfully", { id: loadingId });
-        return response?.data
+        toast.success("Course deleted successfully", { id: loadingId });
+        return response?.data;
     } catch (error) {
         toast.error("Failed to delete course", { id: loadingId });
-        throw error
+        throw error;
     }
 });
 
