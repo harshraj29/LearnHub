@@ -12,16 +12,16 @@ import miscellaneousRoutes from './routes/miscellaneous.routes.js';
 
 const app = express();
 
-const allowedOrigin = 'http://localhost:5173';
+const allowedOrigin = 'https://learn-hub-learning-management-system-c603u9nhl-harshraj29.vercel.app/';
 
 
 configDotenv();
 
 // Allow all origins for development, replace with your production URL
-const allowedOrigins = process.env.CLIENT_URL || 'http://localhost:5173/courses';
+const allowedOrigins = process.env.CLIENT_URL || 'https://learn-hub-learning-management-system-c603u9nhl-harshraj29.vercel.app/courses';
 
 app.use(cors({
-    origin: process.env.NODE_ENV === 'development' ? '*' : 'http://localhost:5173',
+    origin: process.env.NODE_ENV === 'development' ? '*' : 'https://learn-hub-learning-management-system-c603u9nhl-harshraj29.vercel.app/',
     credentials: true,
   }));
 
