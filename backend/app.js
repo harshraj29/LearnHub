@@ -13,14 +13,16 @@ import miscellaneousRoutes from './routes/miscellaneous.routes.js';
 const app = express();
 configDotenv();
 
-// Set allowed origins based on the environment
-const allowedOrigins = process.env.CLIENT_URL ;
+app.use((req, res, next) => {
+  const allowedOrigin = process.env.CLIENT_URL;
+  
+  res.header('Access-Control-Allow-Origin', allowedOrigin);
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 
-// CORS configuration
-app.use(cors({
-  origin: allowedOrigins,
-  credentials: true,
-}));
 
 // Middleware
 app.use(express.json());
