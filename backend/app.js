@@ -13,7 +13,8 @@ import miscellaneousRoutes from './routes/miscellaneous.routes.js';
 const app = express();
 configDotenv();
 
-const allowedOrigins = process.env.CLIENT_URL || 'http://localhost:5173';
+// Set allowed origins based on the environment
+const allowedOrigins = process.env.CLIENT_URL ;
 
 // CORS configuration
 app.use(cors({
