@@ -1,12 +1,6 @@
 import React from 'react';
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 import { useParams } from 'react-router-dom';
-<style>
-    .D9WLyEQaARfWqCTyVrpU {
-        background : black;
-        text : white;
-    }
-</style>
 
 function Liveclass() {
     const { lectureId } = useParams();
