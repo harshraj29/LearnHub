@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -23,6 +23,10 @@ export default function DisplayLecture() {
     await dispatch(getCourseLectures(courseId));
   }
 
+  const handleJoinLiveClass = (lectureId) => {
+    navigate(`/course/live/${lectureId}`);
+  };
+
   useEffect(() => {
     if (!state) navigate("/courses");
     dispatch(getCourseLectures(state._id));
@@ -38,19 +42,34 @@ export default function DisplayLecture() {
             </span>
           </h1>
           <div className="flex md:flex-row flex-col md:justify-between w-full h-full">
-            {/* left section for lecture video and details */}
             <div className="md:w-[48%] w-full md:p-3 p-1 overflow-y-scroll md:h-full h-[40%] flex justify-center">
               <div className="w-full h-[170px] border bg-[#0000003d] shadow-lg">
-                <video
-                  src={
-                    lectures && lectures?.[currentVideo]?.lecture?.secure_url
-                  }
-                  disablePictureInPicture
-                  disableRemotePlayback
-                  controls
-                  controlsList="nodownload"
-                  className="h-full mx-auto"
-                ></video>
+                {!lectures?.[currentVideo]?.isLiveClass && (
+                  <video
+                    src={
+                      lectures && lectures?.[currentVideo]?.lecture?.secure_url
+                    }
+                    disablePictureInPicture
+                    disableRemotePlayback
+                    controls
+                    controlsList="nodownload"
+                    className="h-full mx-auto"
+                  ></video>
+                )}
+
+                {lectures && lectures?.[currentVideo]?.isLiveClass && (
+                  <div className="live flex items-center justify-center">
+                    <button
+                      className="bg-blue-500 text-white mt-5 p-5 rounded-xl"
+                      onClick={() =>
+                        handleJoinLiveClass(lectures[currentVideo]._id)
+                      }
+                    >
+                      Join Now
+                    </button>
+                  </div>
+                )}
+
                 <div className="py-7">
                   <h1 className="text-[17px] text-gray-700 font-[500] dark:text-white font-lato">
                     <span className="text-blue-500 dark:text-yellow-500 font-inter font-semibold text-lg">

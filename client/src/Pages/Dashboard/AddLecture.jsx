@@ -22,6 +22,7 @@ export default function AddLecture() {
     title: "",
     description: "",
     videoSrc: "",
+    isLiveClass: false,
   });
 
   function handleInputChange(e) {
@@ -44,7 +45,10 @@ export default function AddLecture() {
 
   async function onFormSubmit(e) {
     e.preventDefault();
-    if (!userInput.lecture || !userInput.title || !userInput.description) {
+    if (
+      !userInput.isLiveClass &&
+      (!userInput.lecture || !userInput.title || !userInput.description)
+    ) {
       toast.error("All fields are mandatory");
       return;
     }
@@ -52,9 +56,12 @@ export default function AddLecture() {
     setIsLoading(true);
 
     const formData = new FormData();
-    formData.append("lecture", userInput.lecture);
+    if (!userInput.isLiveClass) {
+      formData.append("lecture", userInput.lecture);
+    }
     formData.append("title", userInput.title);
     formData.append("description", userInput.description);
+    formData.append("isLiveClass", userInput.isLiveClass);
 
     const data = { formData, id: userInput.id };
 
@@ -67,6 +74,7 @@ export default function AddLecture() {
         title: "",
         description: "",
         videoSrc: "",
+        isLiveClass: false, // Reset live class option
       });
     }
     setIsLoading(false);
@@ -99,39 +107,45 @@ export default function AddLecture() {
           <div className="w-full flex md:flex-row md:justify-between justify-center flex-col md:gap-0 gap-5">
             <div className="md:w-[48%] w-full flex flex-col gap-5">
               {/* lecture video */}
-              <div className="border border-gray-300 h-[200px] flex justify-center cursor-pointer">
-                {userInput.videoSrc && (
-                  <video
-                    muted
-                    src={userInput.videoSrc}
-                    controls
-                    controlsList="nodownload nofullscreen"
-                    disablePictureInPicture
-                    className="object-fill w-full"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      videoRef.current.click();
-                    }}
-                  ></video>
-                )}
-                {!userInput.videoSrc && (
-                  <label
-                    className="font-[500] text-xl h-full w-full flex justify-center items-center cursor-pointer font-lato"
-                    htmlFor="lecture"
-                  >
-                    Choose Your Video
-                  </label>
-                )}
-                <input
-                  type="file"
-                  className="hidden"
-                  id="lecture"
-                  ref={videoRef}
-                  name="lecture"
-                  onChange={handleVideo}
-                  accept="video/mp4, video/x-mp4, video/*"
-                />
-              </div>
+              {userInput.isLiveClass ? (
+                <div className="text-center font-lato text-xl">
+                  This is a live class. Video upload is not required.
+                </div>
+              ) : (
+                <div className="border border-gray-300 h-[200px] flex justify-center cursor-pointer">
+                  {userInput.videoSrc && (
+                    <video
+                      muted
+                      src={userInput.videoSrc}
+                      controls
+                      controlsList="nodownload nofullscreen"
+                      disablePictureInPicture
+                      className="object-fill w-full"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        videoRef.current.click();
+                      }}
+                    ></video>
+                  )}
+                  {!userInput.videoSrc && (
+                    <label
+                      className="font-[500] text-xl h-full w-full flex justify-center items-center cursor-pointer font-lato"
+                      htmlFor="lecture"
+                    >
+                      Choose Your Video
+                    </label>
+                  )}
+                  <input
+                    type="file"
+                    className="hidden"
+                    id="lecture"
+                    ref={videoRef}
+                    name="lecture"
+                    onChange={handleVideo}
+                    accept="video/mp4, video/x-mp4, video/*"
+                  />
+                </div>
+              )}
             </div>
             <div className="md:w-[48%] w-full flex flex-col gap-5">
               {/* title */}
@@ -153,6 +167,25 @@ export default function AddLecture() {
                 onChange={handleInputChange}
                 value={userInput.description}
               />
+              {/* isLiveClass option */}
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  id="isLiveClass"
+                  name="isLiveClass"
+                  checked={userInput.isLiveClass}
+                  onChange={() =>
+                    setUserInput((prevUserInput) => ({
+                      ...prevUserInput,
+                      isLiveClass: !prevUserInput.isLiveClass,
+                    }))
+                  }
+                  className="mr-2"
+                />
+                <label htmlFor="isLiveClass" className="font-lato text-lg">
+                  Is Live Class
+                </label>
+              </div>
             </div>
           </div>
 

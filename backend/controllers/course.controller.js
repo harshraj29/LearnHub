@@ -175,7 +175,8 @@ const addLectureToCourseById = async (req, res, next) => {
         const lectureData = {
             title,
             description,
-            lecture: {}
+            lecture: {},
+            isLiveClass: req.body.isLiveClass || false,
         }
 
         // file upload
