@@ -9,7 +9,6 @@ import {
   verifyUserPayment,
 } from "../../Redux/Slices/RazorpaySlice";
 import toast from "react-hot-toast";
-import { getUserData } from "../../Redux/Slices/AuthSlice";
 
 export default function Checkout() {
   const dispatch = useDispatch();
@@ -18,9 +17,7 @@ export default function Checkout() {
   const [subscription_id, setSubscription_id] = useState(
     useSelector((state) => state?.razorpay?.subscription_id)
   );
-  const isPaymentVerified = useSelector(
-    (state) => state?.razorpay?.isPaymentVerified
-  );
+
   const userData = useSelector((state) => state?.auth?.data);
   const paymentDetails = {
     razorpay_payment_id: "",

@@ -77,7 +77,7 @@ const razoraySlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        // for ge tRazorPay Api Key
+        // for get RazorPay Api Key
         builder.addCase(getRazorPayId.fulfilled, (state, action) => {
             state.key = action?.payload?.key
         })
