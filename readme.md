@@ -1,8 +1,8 @@
 # LearnHub - Learning Management System 🚀
 
-frontend :- https://learnhub-psi.vercel.app/
+Frontend :- https://learnhub-psi.vercel.app/
 
-backend :- https://learnhub-r5a8.onrender.com
+Backend :- https://learnhub-r5a8.onrender.com
 
 ## Introduction:
 
