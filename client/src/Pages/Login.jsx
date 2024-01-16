@@ -97,6 +97,16 @@ export default function Login() {
               signup
             </Link>
           </p>
+          <p className="text-center font-inter text-gray-500 dark:text-slate-300">
+            <Link
+              to="/user/profile/reset-password"
+              className="link text-blue-600 font-lato cursor-pointer"
+            >
+              {" "}
+              Forgot password?
+            </Link>
+          </p>
+
         </form>
       </section>
     </Layout>
