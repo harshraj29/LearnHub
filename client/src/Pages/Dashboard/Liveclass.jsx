@@ -8,8 +8,8 @@ function Liveclass() {
     const userName = "Your Name";
     
     const Liveclass = async(element)=> {
-        const appID = 1752201823;
-        const serverSecret = "a8e3273cfb32e052efb4b48febddf40f";
+        const appID = 1888204127;
+        const serverSecret = "239dd40d3860b63ea14e263a1e111172";
         const kitToken =  ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, lectureId,  Date.now().toString(),  userName);
          
         //create instance for live class
