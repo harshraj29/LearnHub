@@ -2,7 +2,7 @@
 
 Frontend :- https://learnhub-psi.vercel.app/
 
-Backend :- https://learnhub-r5a8.onrender.com
+Backend :- https://adorable-dove-apron.cyclic.app/
 
 ## Introduction:
 
